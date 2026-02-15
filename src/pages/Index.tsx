@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Starfield from "@/components/Starfield";
 import SystemBar from "@/components/SystemBar";
 import CommandNav from "@/components/CommandNav";
@@ -19,21 +19,35 @@ const sections = [
 const Index = () => {
   const [activeSection, setActiveSection] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [warping, setWarping] = useState(false);
 
   const handleNavigate = (index: number) => {
     if (index === activeSection) return;
+    setWarping(true);
     setVisible(false);
     setTimeout(() => {
       setActiveSection(index);
       setVisible(true);
-    }, 150);
+    }, 400);
+    setTimeout(() => {
+      setWarping(false);
+    }, 800);
   };
 
   const ActiveComponent = sections[activeSection];
 
   return (
     <div className="min-h-screen relative">
-      <Starfield />
+      <Starfield warp={warping} />
+
+      {/* Warp vignette overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[1] transition-opacity duration-500"
+        style={{
+          opacity: warping ? 0.6 : 0,
+          background: "radial-gradient(ellipse at center, transparent 30%, rgba(12,17,28,0.9) 100%)",
+        }}
+      />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         <SystemBar activeSection={activeSection} />
