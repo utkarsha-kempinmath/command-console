@@ -90,11 +90,11 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
               className={`font-mono text-[10px] tracking-[0.2em] uppercase transition-all duration-300
                 ${activeSection === i
                   ? "text-foreground"
-                  : "text-muted-foreground/40 group-hover:text-muted-foreground"
+                  : "text-foreground/70 group-hover:text-foreground"
                 }
               `}
             >
-              <span className="text-primary/40 group-hover:text-primary/60 mr-1.5 transition-colors duration-300">
+              <span className="text-primary/60 group-hover:text-primary mr-1.5 transition-colors duration-300">
                 {String(s.id + 1).padStart(2, "0")}
               </span>
               {s.label}
@@ -105,18 +105,41 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
 
       {/* Central Panel */}
       <div className="relative w-[92vw] max-w-3xl mx-auto">
-        {/* Panel frame */}
-        <div className="relative border border-border/40 bg-card/30 backdrop-blur-sm overflow-hidden">
-          {/* Corner accents */}
-          <div className="absolute -top-px -left-px w-10 h-10 border-t border-l border-primary/30" />
-          <div className="absolute -top-px -right-px w-10 h-10 border-t border-r border-primary/30" />
-          <div className="absolute -bottom-px -left-px w-10 h-10 border-b border-l border-primary/30" />
-          <div className="absolute -bottom-px -right-px w-10 h-10 border-b border-r border-primary/30" />
+        {/* Panel frame with angled corners */}
+        <div
+          className="relative bg-card/30 backdrop-blur-sm overflow-hidden"
+          style={{
+            clipPath: "polygon(40px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 40px)",
+          }}
+        >
+          {/* Border outline matching clip-path */}
+          <div
+            className="absolute inset-0 pointer-events-none z-20"
+            style={{
+              clipPath: "polygon(40px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 40px)",
+              background: "transparent",
+              boxShadow: "inset 0 0 0 1px hsl(var(--primary) / 0.25)",
+            }}
+          />
 
-          {/* Top accent line */}
-          <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-          {/* Bottom accent line */}
-          <div className="absolute bottom-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+          {/* Accent glow on top-left angle */}
+          <div
+            className="absolute top-0 left-0 w-[42px] h-[42px] pointer-events-none z-20"
+            style={{
+              background: "linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
+            }}
+          />
+
+          {/* Accent glow on bottom-right angle */}
+          <div
+            className="absolute bottom-0 right-0 w-[42px] h-[42px] pointer-events-none z-20"
+            style={{
+              background: "linear-gradient(-45deg, hsl(var(--primary) / 0.2) 0%, transparent 70%)",
+            }}
+          />
+
+          {/* Bottom edge accent line */}
+          <div className="absolute bottom-0 left-[14px] right-[42px] h-px bg-gradient-to-r from-primary/40 via-primary/15 to-transparent pointer-events-none z-20" />
 
           {/* Subtle inner glow */}
           <div
@@ -187,10 +210,10 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
                         onClick={() => handleNav(i)}
                         className="w-full flex items-center gap-3 py-2.5 px-3 group cursor-pointer text-left border border-transparent hover:border-border/30 transition-colors"
                       >
-                        <span className="font-mono text-[10px] text-primary/40 group-hover:text-primary/60 transition-colors">
+                        <span className="font-mono text-[10px] text-primary/50 group-hover:text-primary transition-colors">
                           {String(s.id + 1).padStart(2, "0")}
                         </span>
-                        <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50 group-hover:text-muted-foreground transition-colors">
+                        <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-foreground/70 group-hover:text-foreground transition-colors">
                           {s.label}
                         </span>
                         <div className="ml-auto h-px w-0 group-hover:w-4 bg-primary/30 transition-all duration-300" />
