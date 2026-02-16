@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Starfield from "@/components/Starfield";
 import SystemBar from "@/components/SystemBar";
 import CommandNav from "@/components/CommandNav";
+import LandingDeck from "@/components/LandingDeck";
 import ProjectArchive from "@/components/sections/ProjectArchive";
 import MissionLogs from "@/components/sections/MissionLogs";
 import SystemCapabilities from "@/components/sections/SystemCapabilities";
@@ -17,9 +18,19 @@ const sections = [
 ];
 
 const Index = () => {
+  const [landed, setLanded] = useState(false);
   const [activeSection, setActiveSection] = useState(0);
   const [visible, setVisible] = useState(true);
   const [warping, setWarping] = useState(false);
+
+  const handleLand = (sectionIndex?: number) => {
+    setWarping(true);
+    setTimeout(() => {
+      setLanded(true);
+      setActiveSection(sectionIndex ?? 0);
+      setWarping(false);
+    }, 600);
+  };
 
   const handleNavigate = (index: number) => {
     if (index === activeSection) return;
@@ -49,22 +60,28 @@ const Index = () => {
         }}
       />
 
-      <div className="relative z-10 flex flex-col min-h-screen">
-        <SystemBar activeSection={activeSection} />
-
-        <div className="flex flex-1 overflow-hidden">
-          <CommandNav activeSection={activeSection} onNavigate={handleNavigate} />
-
-          <main className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-10">
-            <div
-              className={visible ? "section-fade-enter" : "section-fade-exit"}
-              key={activeSection}
-            >
-              <ActiveComponent />
-            </div>
-          </main>
+      {!landed ? (
+        <div className="relative z-10">
+          <LandingDeck onEnter={handleLand} />
         </div>
-      </div>
+      ) : (
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <SystemBar activeSection={activeSection} />
+
+          <div className="flex flex-1 overflow-hidden">
+            <CommandNav activeSection={activeSection} onNavigate={handleNavigate} />
+
+            <main className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-10">
+              <div
+                className={visible ? "section-fade-enter" : "section-fade-exit"}
+                key={activeSection}
+              >
+                <ActiveComponent />
+              </div>
+            </main>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
