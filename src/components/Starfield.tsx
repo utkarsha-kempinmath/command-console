@@ -61,7 +61,7 @@ const Starfield = ({ warp = false }: StarfieldProps) => {
       }
 
       const warpFactor = warpProgressRef.current;
-      const speed = 0.5 + warpFactor * 25;
+      const speed = 0.3 + warpFactor * 15;
 
       for (const star of starsRef.current) {
         star.z -= speed * star.baseSpeed;
