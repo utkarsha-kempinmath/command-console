@@ -59,6 +59,10 @@ export default {
           DEFAULT: "hsl(var(--highlight))",
           muted: "hsl(var(--highlight-muted))",
         },
+        neon: {
+          DEFAULT: "hsl(var(--neon))",
+          muted: "hsl(var(--neon-muted))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
