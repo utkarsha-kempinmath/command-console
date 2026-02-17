@@ -30,7 +30,6 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
   const [visible, setVisible] = useState(true);
   const [cursorVisible, setCursorVisible] = useState(true);
 
-  // Blinking cursor
   useEffect(() => {
     if (activeSection !== null) return;
     const interval = setInterval(() => setCursorVisible((v) => !v), 530);
@@ -58,18 +57,17 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
 
   const ActiveComponent = activeSection !== null ? sectionComponents[activeSection] : null;
 
-  // Nav positions for desktop: edges of viewport
   const navPositions = [
-    "top-6 left-6 md:top-8 md:left-10 items-start text-left",       // top-left
-    "top-6 right-6 md:top-8 md:right-10 items-end text-right",      // top-right
-    "bottom-6 left-6 md:bottom-8 md:left-10 items-start text-left", // bottom-left
-    "bottom-6 right-6 md:bottom-8 md:right-10 items-end text-right",// bottom-right
-    "bottom-6 left-1/2 -translate-x-1/2 md:bottom-8 items-center text-center", // bottom-center
+    "top-6 left-6 md:top-8 md:left-10 items-start text-left",
+    "top-6 right-6 md:top-8 md:right-10 items-end text-right",
+    "bottom-6 left-6 md:bottom-8 md:left-10 items-start text-left",
+    "bottom-6 right-6 md:bottom-8 md:right-10 items-end text-right",
+    "bottom-6 left-1/2 -translate-x-1/2 md:bottom-8 items-center text-center",
   ];
 
   return (
     <div className="fixed inset-0 z-10 flex items-center justify-center">
-      {/* Edge navigation labels — hidden on mobile when section is active */}
+      {/* Edge navigation labels */}
       <div className="hidden md:block">
         {sections.map((s, i) => (
           <button
@@ -77,11 +75,10 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
             onClick={() => handleNav(i)}
             className={`fixed ${navPositions[i]} flex flex-col gap-1 group cursor-pointer z-20`}
           >
-            {/* Line accent */}
             <div
-              className={`h-px bg-primary/20 group-hover:bg-primary/50 transition-all duration-500
+              className={`h-px transition-all duration-500
                 ${i <= 1 ? "mb-1" : "order-first mb-1"}
-                ${activeSection === i ? "w-12 bg-primary/50" : "w-6 group-hover:w-12"}
+                ${activeSection === i ? "w-12 bg-neon/50" : "w-6 group-hover:w-12 bg-neon/15 group-hover:bg-neon/40"}
                 ${i === 1 || i === 3 ? "ml-auto" : ""}
                 ${i === 4 ? "mx-auto" : ""}
               `}
@@ -89,12 +86,12 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
             <span
               className={`font-mono text-[10px] tracking-[0.2em] uppercase transition-all duration-300
                 ${activeSection === i
-                  ? "text-foreground"
+                  ? "text-neon"
                   : "text-foreground/70 group-hover:text-foreground"
                 }
               `}
             >
-              <span className="text-primary/60 group-hover:text-primary mr-1.5 transition-colors duration-300">
+              <span className={`mr-1.5 transition-colors duration-300 ${activeSection === i ? "text-neon" : "text-neon/40 group-hover:text-neon/70"}`}>
                 {String(s.id + 1).padStart(2, "0")}
               </span>
               {s.label}
@@ -105,47 +102,46 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
 
       {/* Central Panel */}
       <div className="relative w-[92vw] max-w-3xl mx-auto">
-        {/* Panel frame with angled corners */}
         <div
           className="relative bg-card/30 backdrop-blur-sm overflow-hidden"
           style={{
             clipPath: "polygon(40px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 40px)",
           }}
         >
-          {/* Border outline matching clip-path */}
+          {/* Border outline */}
           <div
             className="absolute inset-0 pointer-events-none z-20"
             style={{
               clipPath: "polygon(40px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 40px), calc(100% - 40px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 40px)",
-              background: "transparent",
-              boxShadow: "inset 0 0 0 1px hsl(var(--primary) / 0.25)",
+              boxShadow: "inset 0 0 0 1px hsl(var(--neon) / 0.15)",
             }}
           />
 
-          {/* Accent glow on top-left angle */}
+          {/* Corner accent glows - neon */}
           <div
             className="absolute top-0 left-0 w-[42px] h-[42px] pointer-events-none z-20"
             style={{
-              background: "linear-gradient(135deg, hsl(var(--primary) / 0.3) 0%, transparent 70%)",
+              background: "linear-gradient(135deg, hsl(var(--neon) / 0.2) 0%, transparent 70%)",
             }}
           />
-
-          {/* Accent glow on bottom-right angle */}
           <div
             className="absolute bottom-0 right-0 w-[42px] h-[42px] pointer-events-none z-20"
             style={{
-              background: "linear-gradient(-45deg, hsl(var(--primary) / 0.2) 0%, transparent 70%)",
+              background: "linear-gradient(-45deg, hsl(var(--neon) / 0.15) 0%, transparent 70%)",
             }}
           />
 
           {/* Bottom edge accent line */}
-          <div className="absolute bottom-0 left-[14px] right-[42px] h-px bg-gradient-to-r from-primary/40 via-primary/15 to-transparent pointer-events-none z-20" />
+          <div className="absolute bottom-0 left-[14px] right-[42px] h-px bg-gradient-to-r from-neon/25 via-neon/8 to-transparent pointer-events-none z-20" />
+
+          {/* Top edge accent line */}
+          <div className="absolute top-0 left-[42px] right-[14px] h-px bg-gradient-to-l from-neon/20 via-neon/5 to-transparent pointer-events-none z-20" />
 
           {/* Subtle inner glow */}
           <div
-            className="absolute inset-0 pointer-events-none opacity-30"
+            className="absolute inset-0 pointer-events-none opacity-20"
             style={{
-              background: "radial-gradient(ellipse at center, hsl(var(--accent) / 0.08) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse at center, hsl(var(--neon) / 0.06) 0%, transparent 70%)",
             }}
           />
 
@@ -159,27 +155,24 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
           />
 
           {/* Panel top bar */}
-          <div className="flex items-center justify-between px-4 py-2 border-b border-border/30">
-            <span className="system-text text-[9px] text-muted-foreground/40">
+          <div className="flex items-center justify-between px-4 py-2 border-b border-neon/8">
+            <span className="system-text text-[9px] text-neon/30">
               {activeSection !== null ? sections[activeSection].sector : "SYS.READY"}
             </span>
-            <span className="system-text text-[9px] text-muted-foreground/40">
+            <span className="system-text text-[9px] text-neon/30">
               STATUS: OPERATIONAL
             </span>
           </div>
 
           {/* Panel content */}
-          <div
-            className="relative z-10 px-6 py-8 md:px-10 md:py-10 min-h-[50vh] max-h-[70vh] overflow-y-auto"
-          >
+          <div className="relative z-10 px-6 py-8 md:px-10 md:py-10 min-h-[50vh] max-h-[70vh] overflow-y-auto">
             <div
               key={activeSection ?? "home"}
               className={visible ? "section-fade-enter" : "section-fade-exit"}
             >
               {activeSection === null ? (
-                /* Welcome state */
                 <div className="flex flex-col items-center justify-center min-h-[40vh] text-center gap-5">
-                  <div className="system-text text-[9px] text-muted-foreground/30 tracking-[0.4em]">
+                  <div className="system-text text-[9px] text-neon/25 tracking-[0.4em]">
                     INTERFACE INITIALIZED
                   </div>
 
@@ -187,15 +180,15 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
                     Command Interface Online
                   </h1>
 
-                  <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                  <div className="w-20 h-px bg-gradient-to-r from-transparent via-neon/30 to-transparent" />
 
                   <p className="font-mono text-xs md:text-sm text-muted-foreground tracking-[0.15em] uppercase">
                     Commander: Utkarsha Kempinmath
                   </p>
 
                   <div className="font-mono text-sm text-muted-foreground/50 h-5">
-                    <span className="text-primary/40">{'>'}</span>
-                    <span className={cursorVisible ? "opacity-100" : "opacity-0"}>_</span>
+                    <span className="text-neon/40">{'>'}</span>
+                    <span className={cursorVisible ? "text-neon/60" : "opacity-0"}>_</span>
                   </div>
 
                   <div className="system-text text-[9px] text-muted-foreground/25 tracking-[0.3em] mt-4">
@@ -208,28 +201,26 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
                       <button
                         key={s.id}
                         onClick={() => handleNav(i)}
-                        className="w-full flex items-center gap-3 py-2.5 px-3 group cursor-pointer text-left border border-transparent hover:border-border/30 transition-colors"
+                        className="w-full flex items-center gap-3 py-2.5 px-3 group cursor-pointer text-left border border-transparent hover:border-neon/10 transition-colors"
                       >
-                        <span className="font-mono text-[10px] text-primary/50 group-hover:text-primary transition-colors">
+                        <span className="font-mono text-[10px] text-neon/40 group-hover:text-neon/70 transition-colors">
                           {String(s.id + 1).padStart(2, "0")}
                         </span>
                         <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-foreground/70 group-hover:text-foreground transition-colors">
                           {s.label}
                         </span>
-                        <div className="ml-auto h-px w-0 group-hover:w-4 bg-primary/30 transition-all duration-300" />
+                        <div className="ml-auto h-px w-0 group-hover:w-4 bg-neon/20 transition-all duration-300" />
                       </button>
                     ))}
                   </div>
                 </div>
               ) : (
-                /* Section content */
                 <div>
-                  {/* Back button */}
                   <button
                     onClick={handleBack}
-                    className="mb-4 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50 hover:text-muted-foreground transition-colors cursor-pointer flex items-center gap-2"
+                    className="mb-4 font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground/50 hover:text-neon/60 transition-colors cursor-pointer flex items-center gap-2"
                   >
-                    <span className="text-primary/40">{'<'}</span> BACK TO DECK
+                    <span className="text-neon/40">{'<'}</span> BACK TO DECK
                   </button>
 
                   {/* Mobile section nav */}
@@ -240,7 +231,7 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
                         onClick={() => handleNav(i)}
                         className={`font-mono text-[9px] tracking-[0.1em] uppercase px-2 py-1 border transition-colors
                           ${activeSection === i
-                            ? "border-primary/40 text-foreground"
+                            ? "border-neon/30 text-neon"
                             : "border-transparent text-muted-foreground/40 hover:text-muted-foreground/60"
                           }
                         `}
@@ -257,11 +248,11 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
           </div>
 
           {/* Panel bottom bar */}
-          <div className="flex items-center justify-between px-4 py-2 border-t border-border/30">
-            <span className="system-text text-[9px] text-muted-foreground/30">
+          <div className="flex items-center justify-between px-4 py-2 border-t border-neon/8">
+            <span className="system-text text-[9px] text-neon/20">
               UTKARSHA.DECK v1.0
             </span>
-            <span className="system-text text-[9px] text-muted-foreground/30">
+            <span className="system-text text-[9px] text-neon/20">
               MISSION STATUS: ACTIVE
             </span>
           </div>

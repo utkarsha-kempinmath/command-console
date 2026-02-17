@@ -27,6 +27,9 @@
     --accent: 260 15% 45%;
     --accent-foreground: 216 40% 93%;
 
+    --neon: 195 100% 60%;
+    --neon-muted: 195 60% 35%;
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
