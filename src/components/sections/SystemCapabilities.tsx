@@ -12,6 +12,14 @@ const skillGroups = [
     items: ["Node.js", "Express.js", "MongoDB", "Mongoose", "REST APIs"],
   },
   {
+    label: "SYSTEM DESIGN",
+    items: ["Microservices", "API Gateway", "Load Balancing", "Caching Strategies"],
+  },
+  {
+    label: "ML INTEGRATION",
+    items: ["Model Deployment", "Data Pipelines", "Feature Engineering", "Python ML Stack"],
+  },
+  {
     label: "AUTH & TOOLS",
     items: ["JWT", "Git", "MVC Architecture"],
   },
@@ -25,7 +33,7 @@ const SystemCapabilities = () => {
       <div className="space-y-6">
         {skillGroups.map((group) => (
           <div key={group.label} className="panel p-4">
-            <div className="system-text text-primary mb-3 text-[11px]">
+            <div className="system-text text-neon mb-3 text-[13px] tracking-[0.15em]">
               ▸ {group.label}
             </div>
             <div className="space-y-1">
