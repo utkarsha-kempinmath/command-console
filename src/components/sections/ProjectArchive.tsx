@@ -56,6 +56,20 @@ const projects: Project[] = [
     ],
   },
   {
+    name: "ReCraft",
+    description:
+      "A responsive Instagram-style upcycling social interface built using HTML, CSS, and JavaScript.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    status: "COMPLETE",
+    imageCount: 2,
+    features: [
+      "Responsive layout using Flexbox & Grid",
+      "Clean card-based UI structure",
+      "Interactive styling and transitions",
+      "Strengthening frontend fundamentals",
+    ],
+  },
+  {
     name: "Netflix Clone & Portfolio Website",
     description: "Responsive UI projects demonstrating frontend proficiency and design implementation.",
     stack: ["HTML", "CSS", "JavaScript", "React"],
