@@ -7,6 +7,7 @@ interface Project {
   stack: string[];
   status: string;
   features?: string[];
+  image?: string[];
   github?: string;
   featured?: boolean;
   imageCount?: number;
@@ -18,14 +19,15 @@ const projects: Project[] = [
     description:
       "Behavioral budgeting platform analyzing spending psychology. Backend built with Node.js, Express.js. MongoDB database design. JWT authentication. REST APIs. MVP stage. ML-ready architecture for behavioral insights.",
     stack: ["Node.js", "Express.js", "MongoDB", "JWT", "REST APIs"],
-    status: "MVP — ACTIVE",
+    status: "MVP",
     featured: true,
     imageCount: 3,
+    github: "https://github.com/utkarsha-kempinmath/MonthEnd",
     features: [
       "Behavioral budgeting engine analyzing spending psychology",
-      "JWT-secured REST API architecture",
+      "JWT secured REST API architecture",
       "MongoDB schema for user financial profiles",
-      "ML-ready pipeline for behavioral insights",
+      "ML ready pipeline for behavioral insights",
       "Emergence Pre-Incubation @ IIT Delhi",
     ],
   },
@@ -36,6 +38,7 @@ const projects: Project[] = [
     stack: ["MongoDB", "Express.js", "React", "Node.js"],
     status: "COMPLETE",
     imageCount: 2,
+    github: "https://github.com/utkarsha-kempinmath/mini-Social-Media-app",
     features: [
       "User authentication & authorization",
       "Tweet CRUD operations",
@@ -49,6 +52,7 @@ const projects: Project[] = [
     stack: ["React", "QR Verification", "Node.js"],
     status: "COMPLETE",
     imageCount: 2,
+    github: "https://github.com/utkarsha-kempinmath/Smart-Attencence-",
     features: [
       "QR code generation & scanning",
       "Real-time attendance verification",
@@ -62,6 +66,11 @@ const projects: Project[] = [
     stack: ["HTML", "CSS", "JavaScript"],
     status: "COMPLETE",
     imageCount: 2,
+    image: [
+    "/projects/smartAttendence/image.png",
+    "/projects/smartAttendence/img.png"
+  ]
+    github: "https://github.com/utkarsha-kempinmath/ReCraft",
     features: [
       "Responsive layout using Flexbox & Grid",
       "Clean card-based UI structure",
@@ -243,13 +252,6 @@ const ProjectArchive = () => {
                   onClick={(e) => e.preventDefault()}
                 >
                   <Github size={12} /> VIEW SOURCE
-                </a>
-                <a
-                  href="#"
-                  className="command-button inline-flex items-center gap-2 opacity-50"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <ExternalLink size={12} /> LIVE DEMO
                 </a>
               </div>
               <div className="system-text text-[9px] text-muted-foreground/40 mt-2">
