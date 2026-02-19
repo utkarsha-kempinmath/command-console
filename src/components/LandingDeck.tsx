@@ -167,12 +167,9 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
           />
 
           {/* Panel top bar */}
-          <div className="flex items-center justify-between px-4 py-2 border-b border-neon/8">
+          <div className="flex items-center justify-between px-4 py-2">
             <span className="system-text text-[9px] text-neon/30">
               {activeSection !== null ? sections[activeSection].sector : "SYS.READY"}
-            </span>
-            <span className="system-text text-[9px] text-neon/30">
-              STATUS: OPERATIONAL
             </span>
           </div>
 
@@ -260,12 +257,9 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
           </div>
 
           {/* Panel bottom bar */}
-          <div className="flex items-center justify-between px-4 py-2 border-t border-neon/8">
+          <div className="flex items-center justify-between px-4 py-2">
             <span className="system-text text-[9px] text-neon/20">
               UTKARSHA.DECK v1.0
-            </span>
-            <span className="system-text text-[9px] text-neon/20">
-              MISSION STATUS: ACTIVE
             </span>
           </div>
         </div>
