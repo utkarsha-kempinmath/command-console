@@ -119,23 +119,35 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
 
           {/* Corner accent glows - neon */}
           <div
-            className="absolute top-0 left-0 w-[42px] h-[42px] pointer-events-none z-20"
+            className="absolute top-0 left-0 w-[60px] h-[60px] pointer-events-none z-20"
             style={{
-              background: "linear-gradient(135deg, hsl(var(--neon) / 0.2) 0%, transparent 70%)",
+              background: "linear-gradient(135deg, hsl(var(--neon) / 0.25) 0%, transparent 60%)",
             }}
           />
           <div
-            className="absolute bottom-0 right-0 w-[42px] h-[42px] pointer-events-none z-20"
+            className="absolute bottom-0 right-0 w-[60px] h-[60px] pointer-events-none z-20"
             style={{
-              background: "linear-gradient(-45deg, hsl(var(--neon) / 0.15) 0%, transparent 70%)",
+              background: "linear-gradient(-45deg, hsl(var(--neon) / 0.2) 0%, transparent 60%)",
             }}
           />
 
           {/* Bottom edge accent line */}
-          <div className="absolute bottom-0 left-[14px] right-[42px] h-px bg-gradient-to-r from-neon/25 via-neon/8 to-transparent pointer-events-none z-20" />
+          <div className="absolute bottom-0 left-[14px] right-[42px] h-px bg-gradient-to-r from-neon/30 via-neon/12 to-transparent pointer-events-none z-20" />
 
           {/* Top edge accent line */}
-          <div className="absolute top-0 left-[42px] right-[14px] h-px bg-gradient-to-l from-neon/20 via-neon/5 to-transparent pointer-events-none z-20" />
+          <div className="absolute top-0 left-[42px] right-[14px] h-px bg-gradient-to-l from-neon/25 via-neon/8 to-transparent pointer-events-none z-20" />
+
+          {/* Decorative corner lines - top left */}
+          <div className="absolute top-[40px] left-0 w-[80px] h-px bg-gradient-to-r from-neon/30 to-transparent pointer-events-none z-20" />
+          <div className="absolute top-0 left-[40px] w-px h-[60px] bg-gradient-to-b from-neon/25 to-transparent pointer-events-none z-20" />
+
+          {/* Decorative corner lines - bottom right */}
+          <div className="absolute bottom-[40px] right-0 w-[100px] h-px bg-gradient-to-l from-neon/35 to-transparent pointer-events-none z-20" />
+          <div className="absolute bottom-0 right-[40px] w-px h-[80px] bg-gradient-to-t from-neon/30 to-transparent pointer-events-none z-20" />
+          <div className="absolute bottom-[60px] right-0 w-[50px] h-px bg-gradient-to-l from-neon/15 to-transparent pointer-events-none z-20" />
+
+          {/* Decorative corner lines - top right */}
+          <div className="absolute top-[12px] right-0 w-[60px] h-px bg-gradient-to-l from-neon/20 to-transparent pointer-events-none z-20" />
 
           {/* Subtle inner glow */}
           <div
