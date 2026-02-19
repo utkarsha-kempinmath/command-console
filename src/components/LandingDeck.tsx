@@ -167,9 +167,9 @@ const LandingDeck = ({ onWarp }: LandingDeckProps) => {
           />
 
           {/* Panel top bar */}
-          <div className="flex items-center justify-between px-4 py-2">
+          <div className="flex items-center justify-end px-4 py-2">
             <span className="system-text text-[9px] text-neon/30">
-              {activeSection !== null ? sections[activeSection].sector : "SYS.READY"}
+              STATUS: OPERATIONAL
             </span>
           </div>
 
