@@ -10,7 +10,6 @@ interface Project {
   image?: string[];
   github?: string;
   featured?: boolean;
-  imageCount?: number;
 }
 
 const projects: Project[] = [
@@ -21,7 +20,11 @@ const projects: Project[] = [
     stack: ["Node.js", "Express.js", "MongoDB", "JWT", "REST APIs"],
     status: "MVP",
     featured: true,
-    imageCount: 3,
+    image: [
+      "/projects/monthend/image.png",
+      "/projects/monthend/image1.png",
+      "/projects/monthend/image2.png"
+    ],
     github: "https://github.com/utkarsha-kempinmath/MonthEnd",
     features: [
       "Behavioral budgeting engine analyzing spending psychology",
@@ -32,26 +35,15 @@ const projects: Project[] = [
     ],
   },
   {
-    name: "Mini Twitter & Notes App",
-    description:
-      "Full-stack MERN social application with authentication, CRUD operations, and user authorization.",
-    stack: ["MongoDB", "Express.js", "React", "Node.js"],
-    status: "COMPLETE",
-    imageCount: 2,
-    github: "https://github.com/utkarsha-kempinmath/mini-Social-Media-app",
-    features: [
-      "User authentication & authorization",
-      "Tweet CRUD operations",
-      "Notes management system",
-    ],
-  },
-  {
     name: "Smart Attendance",
     description:
       "QR-based verification system with React frontend for streamlined attendance tracking.",
     stack: ["React", "QR Verification", "Node.js"],
     status: "COMPLETE",
-    imageCount: 2,
+    image: [
+      "/projects/smartAttendance/image.png",
+      "/projects/smartAttendance/img.jpeg"
+    ],
     github: "https://github.com/utkarsha-kempinmath/Smart-Attencence-",
     features: [
       "QR code generation & scanning",
@@ -65,11 +57,10 @@ const projects: Project[] = [
       "A responsive Instagram-style upcycling social interface built using HTML, CSS, and JavaScript.",
     stack: ["HTML", "CSS", "JavaScript"],
     status: "COMPLETE",
-    imageCount: 2,
     image: [
-    "/projects/smartAttendence/image.png",
-    "/projects/smartAttendence/img.png"
-  ],
+      "/projects/recraft/image.png",
+      "/projects/recraft/image1.png"
+    ],
     github: "https://github.com/utkarsha-kempinmath/ReCraft",
     features: [
       "Responsive layout using Flexbox & Grid",
@@ -79,11 +70,28 @@ const projects: Project[] = [
     ],
   },
   {
+    name: "Mini Twitter & Notes App",
+    description:
+      "Full-stack MERN social application with authentication, CRUD operations, and user authorization.",
+    stack: ["MongoDB", "Express.js", "React", "Node.js"],
+    status: "COMPLETE",
+    github: "https://github.com/utkarsha-kempinmath/mini-Social-Media-app",
+    features: [
+      "User authentication & authorization",
+      "Tweet CRUD operations",
+      "Notes management system",
+    ],
+  },
+  {
     name: "Netflix Clone & Portfolio Website",
     description: "Responsive UI projects demonstrating frontend proficiency and design implementation.",
     stack: ["HTML", "CSS", "JavaScript", "React"],
     status: "COMPLETE",
-    imageCount: 2,
+    image: [
+      "/projects/netflix/image.png",
+      "/projects/netflix/image1.png"
+    ],
+    github: "https://github.com/utkarsha-kempinmath/Netflix-clone",
     features: [
       "Pixel-perfect responsive layouts",
       "Component-based architecture",
@@ -134,9 +142,6 @@ const ProjectArchive = () => {
           </div>
           <div className="flex items-center justify-between">
             <span className="system-text text-primary/60 text-[10px]">Founder</span>
-            <span className="system-text text-[10px] text-muted-foreground flex items-center gap-1">
-              <ImageIcon size={10} /> {projects[0].imageCount} CAPTURES
-            </span>
           </div>
         </div>
       </div>
@@ -163,9 +168,7 @@ const ProjectArchive = () => {
                 </span>
               ))}
             </div>
-            <span className="system-text text-[10px] text-muted-foreground flex items-center gap-1">
-              <ImageIcon size={10} /> {project.imageCount} CAPTURES
-            </span>
+            
           </div>
         ))}
       </div>
@@ -197,20 +200,17 @@ const ProjectArchive = () => {
               <div className="border-t border-border mt-4 pt-4">
                 <div className="system-text mb-3">VISUAL CAPTURES</div>
                 <div className="grid grid-cols-2 gap-2">
-                  {Array.from({ length: selectedProject.imageCount || 2 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="hud-panel aspect-video flex items-center justify-center border-dashed border-border"
-                    >
-                      <HudCorners />
-                      <div className="text-center">
-                        <ImageIcon size={20} className="text-muted-foreground/30 mx-auto mb-1" />
-                        <span className="system-text text-[9px] text-muted-foreground/40">
-                          AWAITING UPLOAD
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                  {selectedProject.image?.map((img, index) => (
+  <div key={index} className="relative">
+    <HudCorners />
+    <img
+      src={img}
+      alt={`${selectedProject.name} screenshot ${index + 1}`}
+      className="rounded-md border border-border w-full"
+    />
+  </div>
+))}
+
                 </div>
               </div>
 
@@ -247,9 +247,10 @@ const ProjectArchive = () => {
 
               <div className="border-t border-border mt-4 pt-4 flex gap-3">
                 <a
-                  href="#"
+                  href={selectedProject.github}
                   className="command-button inline-flex items-center gap-2"
-                  onClick={(e) => e.preventDefault()}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <Github size={12} /> VIEW SOURCE
                 </a>

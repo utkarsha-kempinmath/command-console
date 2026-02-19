@@ -16,13 +16,13 @@ const Transmission = () => {
           <div>
             <div className="system-text text-[10px] mb-0.5">EMAIL</div>
             <span className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
-              utkarshakempinmath@gmail.com
+              utkarshakempinmath1725@gmail.com
             </span>
           </div>
         </a>
 
         <a
-          href="https://linkedin.com/in/utkarsha-kempinmath"
+          href="https://www.linkedin.com/in/utkarsha-kempinmath-269208290/"
           target="_blank"
           rel="noopener noreferrer"
           className="panel p-4 flex items-center gap-3 hover:border-primary/40 transition-colors group"
