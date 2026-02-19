@@ -69,7 +69,7 @@ const projects: Project[] = [
     image: [
     "/projects/smartAttendence/image.png",
     "/projects/smartAttendence/img.png"
-  ]
+  ],
     github: "https://github.com/utkarsha-kempinmath/ReCraft",
     features: [
       "Responsive layout using Flexbox & Grid",
