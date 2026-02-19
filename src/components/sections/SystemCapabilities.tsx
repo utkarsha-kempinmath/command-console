@@ -13,11 +13,11 @@ const skillGroups = [
   },
   {
     label: "SYSTEM DESIGN",
-    items: ["Microservices", "API Gateway", "Load Balancing", "Caching Strategies"],
+    items: ["Microservices", "API Gateway", "Load Balancing"],
   },
   {
     label: "ML INTEGRATION",
-    items: ["Model Deployment", "Data Pipelines", "Feature Engineering", "Python ML Stack"],
+    items: ["Model Deployment", "Data Pipelines", "Feature Engineering"],
   },
   {
     label: "AUTH & TOOLS",
